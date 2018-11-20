@@ -45,24 +45,31 @@ int main(){
     cout<<"To select the position you want to play in, you must first select the row (1,2,3) and then the column (1,2,3)."<<endl;
     Grid * mainGrid = new Grid();
     mainGrid->printGrid(mainGrid->spots);
-    int row;
-    int col;
-    while(mainGrid->checkFull(mainGrid->spots) == false){
 
+    while(mainGrid->checkFull(mainGrid->spots) == false){
+      int row;
+      int col;
         if(play1 == 1){
             cout<<"Okay, Player 1! select your position"<<endl;
             while (incorrectSelect == false) {
 
                 cout<<"which row?"<<endl;
                 cin >> row;
-                cout<<"which column?"<<endl;
-                cin >> col;
+
                 if(row != 1 && row != 2 && row != 3){
                     cout<<"Please select valid input. Try Again."<<endl;
                     incorrectSelect = false;
-                }else if(col != 1 && col != 2 && col != 3){
+                    cin.clear();
+                    cin.ignore(INT_MAX,'\n');
+                    break;
+                }
+                cout<<"which column?"<<endl;
+                cin >> col;
+                if(col != 1 && col != 2 && col != 3){
                     cout<<"Please select valid input. Try Again."<<endl;
                     incorrectSelect = false;
+                    cin.clear();
+                    cin.ignore(INT_MAX,'\n');
                 }else{
                     int pos = (row - 1) * 3 + (col - 1);
                     if(containsChar(mainGrid->spots[pos])){
@@ -85,17 +92,22 @@ int main(){
         }else{
             cout<<"Okay, Player 2! select your position"<<endl;
             while (incorrectSelect == false) {
-
                 cout<<"which row?"<<endl;
                 cin >> row;
-                cout<<"which column?"<<endl;
-                cin >> col;
+
                 if(row != 1 && row != 2 && row != 3){
                     cout<<"Please select valid input. Try Again."<<endl;
                     incorrectSelect = false;
-                }else if(col != 1 && col != 2 && col != 3){
+                    cin.clear();
+                    cin.ignore(INT_MAX,'\n');
+                }
+                cout<<"which column?"<<endl;
+                cin >> col;
+                if(col != 1 && col != 2 && col != 3){
                     cout<<"Please select valid input. Try Again."<<endl;
                     incorrectSelect = false;
+                    cin.clear();
+                    cin.ignore(INT_MAX,'\n');
                 }else{
                     int pos = (row - 1) * 3 + (col - 1);
                     if(containsChar(mainGrid->spots[pos])){
